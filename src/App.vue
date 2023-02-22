@@ -1,26 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1 @click="increase">
+    {{ count }}
+  </h1>
+  <div v-if="count > 4">
+    4보다 큽니다!
+  </div>
+  <ul>
+    <Fruit
+      v-for="fruit in fruits"
+      :key="fruit"
+      :name="fruit">
+      {{ fruit }}
+    </Fruit>
+  </ul>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Fruit from '~/components/Fruit'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Fruit
+  },
+  // data: function() 이거랑 똑같음
+  data() {
+    return {
+      count: 0,
+      fruits: ['Apple', 'Banana', 'Cherry']
+    }
+  },
+  methods: {
+    increase() {
+      this.count += 1
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  h1 {
+    font-size: 50px;
+    color: royalblue;
+  }
+  ul {
+    li {
+      font-size: 40px;
+    }
+  }
 </style>
